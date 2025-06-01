@@ -1,0 +1,52 @@
+:host {
+  display: block;
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.product-image {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.description {
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+  color: #2a9d8f;
+}
+
+button {
+  padding: 12px 25px;
+  background-color: #2a9d8f;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #21867a;
+  }
+}
