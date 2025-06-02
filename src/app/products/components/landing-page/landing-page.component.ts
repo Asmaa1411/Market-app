@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { LandingService } from '../../services/landing.service';
 import { Product } from '../../../models/product';
+import { CartService } from '../../../cart/services/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-landing-page',
@@ -13,21 +15,60 @@ import { Product } from '../../../models/product';
 })
 export class LandingPageComponent implements OnInit {
   products: Product[] = [];
+  private subscription!: Subscription;
 
-  constructor(private landingService: LandingService, private router: Router) {}
-  ngOnInit(): void {
-    this.landingService.getProducts().subscribe({
+  constructor(
+    private landingService: LandingService,
+    private router: Router,
+    private cartService: CartService
+  ) {}
+
+ ngOnInit(): void {
+    this.subscription = this.landingService.getProducts().subscribe({
       next: (res) => {
         this.products = res;
       }
     });
+  }
+    ngOnDestroy(): void {
+    this.subscription.unsubscribe(); 
   }
 
   goToProduct(id: number): void {
     this.router.navigate(['/product', id]);
   }
 
-  goToCart() {
-  this.router.navigate(['/cart']);
+add(product: Product): void {
+  this.cartService.addToCart(product);
 }
+
+  goToCart(): void {
+    this.router.navigate(['/cart']);
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+// takeUntil() + subject :
+
+// private destroy$ = new Subject<void>();
+
+// ngOnInit() {
+//   this.service.getData().pipe(
+//     takeUntil(this.destroy$)
+//   ).subscribe(data => { ... });
+// }
+
+// ngOnDestroy() {
+//   this.destroy$.next();
+//   this.destroy$.complete();
+// }

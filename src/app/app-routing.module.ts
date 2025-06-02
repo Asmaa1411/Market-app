@@ -8,7 +8,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [ 
   { path: 'landing', component: LandingPageComponent },
   { path: 'product/:id', component: ProductDetailsComponent },
-  { path: 'cart', component: CartComponent },
+  { path: 'cart', loadComponent: () => import('./cart/components/cart/cart.component').then(m => m.CartComponent)},
   { path: '**', component: PageNotFoundComponent },
 ];
 

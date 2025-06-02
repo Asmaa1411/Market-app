@@ -1,8 +1,29 @@
-<div class="products-container">
-  <div *ngFor="let product of products" class="product-card">
-    <img [src]="product.image" [alt]="product.title" />
-    <h3>{{ product.title }}</h3>
-    <p>{{ product.price }} $</p>
-    <button (click)="goToProduct(product.id)">View Details</button>
+<div class="box mt-5 container">
+  <!-- <div class="my-2 w-25">
+    <label for="categories" class="my-1">Categories :</label>
+    <select id="categories" class="form-control">
+      <option value="1">option 1</option>
+      <option value="2">option 2</option>
+      <option value="3">option 3</option>
+      <option value="4">option 4</option>
+    </select>
+  </div> -->
+
+  <div class="row">
+    <div class="col-md-3 col-sm-6 mb-4" *ngFor="let product of products">
+      <div class="card h-100 shadow-sm">
+        <img [src]="product.image" [alt]="product.title" class="card-img-top img-fluid" style="height: 200px; object-fit: contain;" />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title text-truncate">{{ product.title }}</h5>
+          <div class="mt-auto">
+            <button class="btn btn-outline-primary w-100 btn-sm" (click)="goToProduct(product.id)">View Details</button>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <button class="btn btn-success btn-sm" (click)="add(product)">Add To Cart</button>
+              <span class="fw-bold">{{ product.price | currency }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
